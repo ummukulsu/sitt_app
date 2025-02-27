@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 
-
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.medical_services), label: 'Services'),
-          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: 'My Bookings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Icon(Icons.menu, size: 28),
+        title: Image.asset("assets/sitt_logo.png", width: 68),
+        actions: [
+          CircleAvatar(
+            backgroundColor: const Color.fromARGB(255, 248, 247, 247),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.shopping_cart_outlined, color: Colors.black),
+            ),
+          ),
+          SizedBox(width: 8),
+          CircleAvatar(
+            backgroundColor: const Color.fromARGB(255, 248, 247, 247),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.search, color: Colors.black),
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -25,40 +34,19 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              
-              // Top App Bar
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.menu, size: 28),
-                  Text(
-                    "Sitt",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+
+              Container(
+                width: 430,
+                height: 100,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/image.png"),
+                    fit: BoxFit.cover,
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.shopping_cart_outlined, size: 28),
-                      const SizedBox(width: 20),
-                      Icon(Icons.search, size: 28),
-                    ],
-                  ),
-                ],
+                ),
               ),
 
-              const SizedBox(height: 20),
-
-              // Header Image
-              // ClipRRect(
-              //   borderRadius: BorderRadius.circular(10),
-              //   child: Image.asset(
-              //     "assets/header_image.jpg",
-              //     height: 180,
-              //     width: double.infinity,
-              //     fit: BoxFit.cover,
-              //   ),
-              // ),
-
-              const SizedBox(height: 20),
+              SizedBox(height: 10),
 
               // Services Section
               Row(
@@ -66,13 +54,17 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const Text(
                     "Services",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: const Text(
                       "View All >",
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
@@ -94,15 +86,15 @@ class HomeScreen extends StatelessWidget {
                     "Home Services",
                     "Physiotherapy",
                     "Lab Services",
-                    "Nursing Services"
+                    "Nursing Services",
                   ];
-                  // List<String> images = [
-                  //   "assets/home_services.jpg",
-                  //   "assets/physiotherapy.jpg",
-                  //   "assets/lab_services.jpg",
-                  //   "assets/nursing_services.jpg"
-                  // ];
-                  // return _serviceCard(titles[index], images[index]);
+                  List<String> images = [
+                    "assets/homeservice.png",
+                    "assets/physio.png",
+                    "assets/lab.png",
+                    "assets/nursing.png",
+                  ];
+                  return _serviceCard(titles[index], images[index]);
                 },
               ),
 
@@ -110,39 +102,93 @@ class HomeScreen extends StatelessWidget {
 
               // WhatsApp Contact Section
               Container(
-                padding: const EdgeInsets.all(16),
+                height: 100,
+                width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.green.shade100,
-                  borderRadius: BorderRadius.circular(10),
+                  color: const Color.fromARGB(255, 241, 255, 246),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
+                child: Stack(
                   children: [
-                    // Icon(Icons.whatsapp, color: Colors.green, size: 40),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Do you need help?",
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Contact us via WhatsApp Now",
-                            style: TextStyle(fontSize: 14, color: Colors.black54),
-                          ),
-                        ],
-                      ),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                    // Background Image Positioned on the Right
+                    Positioned(
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: Opacity(
+                        opacity: 0.50, // Faded background effect
+                        child: Image.asset(
+                          "assets/help.png", // Background Image
+                          width: 107,
+                          height: 115,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      onPressed: () {},
-                      child: const Text("Contact Us", style: TextStyle(color: Colors.white)),
+                    ),
+
+                    // Foreground Content (Row Layout)
+                    Row(
+                      children: [
+                        const SizedBox(width: 10),
+                        // WhatsApp Icon
+                        CircleAvatar(
+                          backgroundColor: Color.fromARGB(221, 37, 211, 102),
+                          child: Image.asset("assets/whats.png"),
+                        ),
+                        const SizedBox(width: 12),
+
+                        // Text and Button Column
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                "Do you need help?",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(221, 113, 163, 84),
+                                ),
+                              ),
+                              const Text.rich(
+                                TextSpan(
+                                  text: "Contact us via WhatsApp Now ",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color.fromARGB(221, 84, 130, 100),
+                                  ),
+                                  children: [],
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+
+                              // Contact Us Button
+                              Container(
+                                height: 28,
+                                width: 132,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(221, 37, 211, 102),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    "Contact Us",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ), // Space to balance the layout
+                      ],
                     ),
                   ],
                 ),
@@ -173,9 +219,17 @@ class HomeScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _packageCard("Home visit doctor, nursing assistant", "250 SAR"),
+                    packageCard(
+                      "Home visit doctor, nursing assistant",
+                      "250",
+                      "SAR",
+                    ),
                     const SizedBox(width: 10),
-                    _packageCard("Home visit doctor, nursing assistant", "250 SAR"),
+                    packageCard(
+                      "Home visit doctor, nursing assistant",
+                      "250",
+                      "SAR",
+                    ),
                   ],
                 ),
               ),
@@ -193,13 +247,21 @@ class HomeScreen extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: Stack(
         children: [
-          Image.asset(imagePath, width: double.infinity, height: double.infinity, fit: BoxFit.cover),
+          Image.asset(
+            imagePath,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
           Container(
-            color: Colors.black.withOpacity(0.4),
             child: Center(
               child: Text(
                 title,
-                style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -209,9 +271,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _packageCard(String title, String price) {
+  packageCard(String title, String price, String pricetitle) {
     return Container(
-      width: 180,
+      width: 193,
+      height: 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
@@ -220,23 +283,52 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ClipRRect(
-          //   borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-          //   child: Image.asset(
-          //     "assets/package_image.jpg",
-          //     width: double.infinity,
-          //     height: 120,
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+            child: Image.asset(
+              "assets/person.png",
+              width: double.infinity,
+              height: 199,
+              fit: BoxFit.cover,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 5),
-                Text(price, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      price,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      pricetitle,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

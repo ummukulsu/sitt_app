@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sitt_app/bottom.dart';
 import 'package:sitt_app/home.dart';
 
 class CountrySelectionScreen extends StatefulWidget {
@@ -32,131 +33,218 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    _languageButton("English", selectedLanguage == "English"),
-                    _languageButton("عربي", selectedLanguage == "عربي"),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedLanguage = "English";
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color:
+                              selectedLanguage == "English"
+                                  ? Colors.black
+                                  : Colors.transparent,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "English",
+                          style: TextStyle(
+                            color:
+                                selectedLanguage == "English"
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedLanguage = "عربي";
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        decoration: BoxDecoration(
+                          color:
+                              selectedLanguage == "عربي"
+                                  ? Colors.black
+                                  : Colors.transparent,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Text(
+                          "عربي",
+                          style: TextStyle(
+                            color:
+                                selectedLanguage == "عربي"
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 200),
 
             // Welcome Text
-            const Text(
-              "Welcome",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: const Text(
+                "Welcome",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600,color: Colors.black),
+              ),
             ),
-            const SizedBox(height: 8),
-            const Text(
-              "Please select a country",
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+         
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Please select a country",
+                style: TextStyle(
+                  fontSize: 15,
+                 color: Colors.black,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
             ),
 
             const SizedBox(height: 30),
 
-            // Country Selection (Without Custom Widget)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedCountry = "United Arab Emirates";
-                    });
-                  },
-                  child: Container(
-                    width: 130,
-                    height: 130,
-                    decoration: BoxDecoration(
-                      color: selectedCountry == "United Arab Emirates"
-                          ? Colors.black.withOpacity(0.05)
-                          : Colors.white,
-                      border: Border.all(
-                        color: selectedCountry == "United Arab Emirates"
-                            ? Colors.black
-                            : Colors.grey.shade300,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/uae_flag.png", width:20),
-                        const SizedBox(height: 10),
-                        const Text(
-                          "United Arab Emirates",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedCountry = "United Arab Emirates";
+                      });
+                    },
+                    child: Container(
+                      width: 172,
+                      height: 140,
+                      decoration: BoxDecoration(
+                        color:
+                            selectedCountry == "United Arab Emirates"
+                                ? Colors.black.withOpacity(0.05)
+                                : Colors.white,
+                        border: Border.all(
+                          color:
+                              selectedCountry == "United Arab Emirates"
+                                  ? Colors.black
+                                  : Colors.grey.shade300,
+                          width: 2,
                         ),
-                      ],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/uae_flag.png", width: 60),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "United Arab Emirates",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 20),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedCountry = "Saudi Arabia";
-                    });
-                  },
-                  child: Container(
-                    width: 130,
-                    height: 130,
-                    decoration: BoxDecoration(
-                      color: selectedCountry == "Saudi Arabia"
-                          ? Colors.black.withOpacity(0.05)
-                          : Colors.white,
-                      border: Border.all(
-                        color: selectedCountry == "Saudi Arabia"
-                            ? Colors.black
-                            : Colors.grey.shade300,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/saudi_flag.png", width: 60),
-                        const SizedBox(height: 10),
-                        const Text(
-                          "Saudi Arabia",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedCountry = "Saudi Arabia";
+                      });
+                    },
+                    child: Container(
+                      width: 172,
+                      height: 140,
+                      decoration: BoxDecoration(
+                        color:
+                            selectedCountry == "Saudi Arabia"
+                                ? Colors.black.withOpacity(0.05)
+                                : Colors.white,
+                        border: Border.all(
+                          color:
+                              selectedCountry == "Saudi Arabia"
+                                  ? Colors.black
+                                  : Colors.grey.shade300,
+                          width: 2,
                         ),
-                      ],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/saudi_flag.png", width: 60),
+                          const SizedBox(height: 10),
+                          const Text(
+                            "Saudi Arabia",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
 
             const SizedBox(height: 20),
             const Text(
               "Please note that our range of services varies by country.",
-              style: TextStyle(fontSize: 14, color: Colors.grey),
+              style: TextStyle(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
               textAlign: TextAlign.center,
             ),
 
             const Spacer(),
 
-            // Continue Button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 100,
+                  vertical: 15,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
               onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BottomNavScreen()),
+                );
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("Continue", style: TextStyle(fontSize: 16, color: Colors.white)),
+                  Text(
+                    "Continue",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
                   SizedBox(width: 10),
                   Icon(Icons.arrow_forward, color: Colors.white),
                 ],
@@ -165,27 +253,6 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
 
             const SizedBox(height: 40),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _languageButton(String text, bool isSelected) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedLanguage = text;
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.black : Colors.transparent,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(color: isSelected ? Colors.white : Colors.black),
         ),
       ),
     );
