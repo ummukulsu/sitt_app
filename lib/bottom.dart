@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sitt_app/booking.dart';
+import 'package:sitt_app/paymnt.dart';
 import 'package:sitt_app/home.dart';
+import 'package:sitt_app/mybooking.dart';
+
+import 'package:sitt_app/services/home_services.dart';
 import 'package:sitt_app/profile.dart';
-import 'package:sitt_app/services.dart';
 
 class BottomNavScreen extends StatefulWidget {
   @override
@@ -15,8 +17,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _pages = [
     HomeScreen(),
     ServicePage(),
-    BookingPage(),
-    ProfilePage(),
+   MyBookingsPage(),
+     ProfilePage(),
   ];
 
   void _onItemTapped(int index) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sitt_app/bottom.dart';
+import 'package:sitt_app/custome_card.dart';
 import 'package:sitt_app/home.dart';
 
 class CountrySelectionScreen extends StatefulWidget {
@@ -103,17 +104,21 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
               alignment: Alignment.centerLeft,
               child: const Text(
                 "Welcome",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600,color: Colors.black),
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
               ),
             ),
-         
+
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 "Please select a country",
                 style: TextStyle(
                   fontSize: 15,
-                 color: Colors.black,
+                  color: Colors.black,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -213,42 +218,31 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
             ),
 
             const SizedBox(height: 20),
-            const Text(
-              "Please note that our range of services varies by country.",
-              style: TextStyle(fontSize: 12, color: Colors.black,fontWeight: FontWeight.w400),
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.only(right: 50),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Please note that our range of services varies by country",
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
             ),
 
             const Spacer(),
 
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 100,
-                  vertical: 15,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
+            BottomButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => BottomNavScreen()),
                 );
               },
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Continue",
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                  SizedBox(width: 10),
-                  Icon(Icons.arrow_forward, color: Colors.white),
-                ],
-              ),
+              title: "Continue",
             ),
 
             const SizedBox(height: 40),
